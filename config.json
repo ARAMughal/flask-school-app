@@ -1,0 +1,8 @@
+{
+    "params":
+    {
+        "local_server":"True",
+        "admin_mail":"ara@gmail.com",
+        "admin_password":"12345"
+    }
+}

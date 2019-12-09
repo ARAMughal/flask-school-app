@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block body %}
+<head>
+<style>
+  
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button5 {background-color: #555555;} /* Black */
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Teachers Table</h2>
+
+<table>
+  <tr>
+    <th>Serial No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Password</th>
+    <th>Joining Date</th>
+    <th>Retirement Date</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{teacher.srno}}</td>
+            <td>{{teacher.name}}</td>
+            <td>{{teacher.email}}</td>
+            <td>{{teacher.phone}}</td>
+            <td>{{teacher.password}}</td>
+            <td>{{teacher.joining_date}}</td>
+            <td>{{teacher.retirement_date}}</td>
+            <td><a href="/editT/{{teacher.srno}}"><button class="btn btn-primary">Edit</button></a></td>
+            <!-- <td>
+                <form action="/editTeacher" method="post">
+                    <input name="target_teacher" value={{teacher["name"]}} type="hidden" />
+                    <button class="btn btn-primary">EDIT</button>
+                </form>
+                </td> -->
+            <td>
+                <form action="/deleteTeacher" method="post">
+                    <input name="target_teacher" value={{teacher["name"]}} type="hidden" />
+                    <button class="btn btn-primary">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table><br>
+<a href="/dashboard"><button class="button button5">Back To Dashboard</button></a>
+</body>
+{% endblock %}

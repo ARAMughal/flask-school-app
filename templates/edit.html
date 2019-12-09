@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Govt School</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="{{url_for('static', filename='fonts/linearicons/style.css')}}">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="{{url_for('static', filename='fonts/material-design-iconic-font/css/material-design-iconic-font.min.css')}}">
+
+		<!-- DATE-PICKER -->
+		<link rel="stylesheet" href="{{url_for('static', filename='vendor/date-picker/css/datepicker.min.css')}}">
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+		<!-- <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}"> -->
+
+	</head>
+	
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<!-- <form action="/teachers/{{student_found}}" method="POST"> -->
+				<form action="/edit/{{srno}}" method="POST">
+					<h3>Add a {{person}}</h3>
+					<div class="form-row">
+						<div class="form-wrapper">
+							<label for="">Name *</label>
+							<input type="text" name="name" value="{{student.name}}" class="form-control" placeholder="Your Name">
+						</div>
+						<div class="form-wrapper">
+							<label for="">{{extra}} *</label>
+							<input type="text" name="{{extra}}" value="{{student.degree}}" class="form-control" placeholder="{{extra}}">
+						</div>
+					</div>
+					<div class="form-row last">
+							<div class="form-wrapper">
+									<label for="">Email *</label>
+									<input type="email" name="email" value="{{student.email}}" class="form-control" placeholder="Your Email">
+							</div>
+						<div class="form-wrapper">
+							<label for="">Password *</label>
+							<input type="password" name="password" value="{{student.password}}" class="form-control" placeholder="Password" value="{{password}}>">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-wrapper">
+							<label for="">Joining Date *</label>
+							<span class="lnr lnr-calendar-full"></span>
+							<input type="text" name="joining_date" value="{{student.joining_date}}" class="form-control datepicker-here" data-language='en' data-date-format="dd M yyyy" id="dp1">
+						</div>
+						<div class="form-wrapper">
+							<label for="">Retirement Date *</label>
+							<span class="lnr lnr-calendar-full"></span>
+							<input type="text" name="retirement_date" value="{{student.retirement_date}}" class="form-control datepicker-here" data-language='en'  data-date-format="dd M yyyy" id="dp2">
+						</div>
+					</div>
+				
+					<button type="submit" data-text="Submitt">
+						<span>Edit {{person}}</span>
+					</button>
+				</form>
+				<a href="/dashboard">
+					<button data-text="Go" >
+						<span>Dashboard</span>
+					</button>
+				</a>
+			</div>
+			
+		</div>
+		
+		<script src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+
+		<!-- DATE-PICKER -->
+		<script src="{{url_for('static', filename='vendor/date-picker/js/datepicker.js')}}"></script>
+		<script src="{{url_for('static', filename='vendor/date-picker/js/datepicker.en.js')}}"></script>
+
+		<script src="{{url_for('static', filename='js/main.js')}}"></script>
+	
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>window.jQuery || document.write("<script src='{{url_for('static', filename='js/jquery-1.11.1.min.js')}}'>\x3C/script>")</script>
+	<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+<!-- 	
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>window.jQuery || document.write("<script src='{{url_for('static', filename='js/jqueryS-1.11.1.min.js')}}'>\x3C/script>")</script>
+	<script src="{{url_for('static', filename='js/pluginsS.js')}}"></script>
+	<script src="{{url_for('static', filename='js/mainS.js')}}"></script> -->
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

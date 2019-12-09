@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block body %}
+<head>
+<style>
+  
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button5 {background-color: #555555;} /* Black */
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Students Table</h2>
+
+<table>
+  <tr>
+    <th>Serial No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Degree</th>
+    <th>Password</th>
+    <th>Joining Date</th>
+    <th>Retirement Date</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{student["srno"]}}</td>
+            <td>{{student["name"]}}</td>
+            <td>{{student["email"]}}</td>
+            <td>{{student["phone"]}}</td>
+            <td>{{student["password"]}}</td>
+            <td>{{student["joining_date"]}}</td>
+            <td>{{student["retirement_date"]}}</td>
+            <td><a href="/edit/{{student.srno}}"><button class="btn btn-primary">Edit</button></a></td>
+            <!-- <td>
+                <form action="/edit/{{target_student}}" method="post">
+                    <input name="target_student" value={{student["name"]}} type="hidden" />
+                    <button>EDIT</button>
+                </form>
+                </td> -->
+            <td>
+                <form action="/deleteStudent" method="post">
+                    <input name="target_student" value={{student["name"]}} type="hidden" />
+                    <button class="btn btn-primary">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<a href="/dashboard"><button class="button button5">Back To Dashboard</button></a>
+</body>
+{% endblock %}
