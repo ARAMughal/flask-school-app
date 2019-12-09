@@ -65,12 +65,7 @@ tr:nth-child(even) {
             <td>{{student["joining_date"]}}</td>
             <td>{{student["retirement_date"]}}</td>
             <td><a href="/edit/{{student.srno}}"><button class="btn btn-primary">Edit</button></a></td>
-            <!-- <td>
-                <form action="/edit/{{target_student}}" method="post">
-                    <input name="target_student" value={{student["name"]}} type="hidden" />
-                    <button>EDIT</button>
-                </form>
-                </td> -->
+          
             <td>
                 <form action="/deleteStudent" method="post">
                     <input name="target_student" value={{student["name"]}} type="hidden" />

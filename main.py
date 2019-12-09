@@ -52,25 +52,8 @@ def TeacherPortal():
 
 @app.route('/StudentPortal',  methods=['GET', 'POST'])
 def StudentPortal():
-    person = "Students"
-    '''
-    email = request.form.get('email')
-    person_found = Students.query.filter_by(name=email).first()
-    if('user' in session and session['user'] == person_found):
-        return render_template('StudentPortal.html')
-    elif request.method == 'POST':
-        email = request.form.get('email')
-        if (email == person_found):
-            session['user'] = email 
-            return render_template('StudentPortal.html')
-      '''                         
+    person = "Students"                         
     return render_template('StudentReq.html', person=person)
-    # return render_template('login.html')
-
-@app.route('/Test')
-def Test():
-    return render_template('Test.html')
-
 
 @app.route('/login')
 def login():
@@ -82,47 +65,12 @@ def login():
 def loginTeacher():
     person = "Teacher"
     action = "TeacherPortal"
-    '''
-    person_mail = request.form.get('email')
-    person_pass = request.form.get('pass')
-    person_found = Students.query.filter_by(name=(person_mail and person_pass)).first()
-
-    if('user' in session and session['user'] == person_found):
-        user = Students.query.all()
-        db.session.commit()
-        return render_template('TeacherPortal.html',person=person,action=action,user=user)
-
-    elif (person_mail == person_found):
-        session['user'] = person_mail
-        user = Students.query.all()
-        return render_template('TeacherPortal.html',person=person,action=action,user=user)
-
-    # user = Students.query.all()
-    # person_mail = request.form['email']
-    # person_pass = request.form['password']
-    # person_found = User.query.filter_by(name=person_mail).first()
-'''
     return render_template('login.html',person=person,action=action )
 
 @app.route('/loginStudent')
 def loginStudent():
     person = "Student"
     action = "StudentPortal"
-    '''
-    person_mail = request.form.get('email')
-    person_found = Students.query.filter_by(name=person_mail).first()
-
-    if('user' in session and session['user'] == person_found):
-        user = Students.query.all()
-        db.session.commit()
-        return render_template('StudentPortal.html',person=person,action=action,user=user)
-
-    elif (person_mail == person_found):
-        session['user'] = person_mail
-        user = Students.query.all()
-        return render_template('StudentPortal.html',person=person,action=action,user=user)
-'''
-
     return render_template('login.html',person=person,action=action)
 
 @app.route('/teachers')
@@ -172,7 +120,6 @@ def addStudents():
 @app.route("/dashboard",  methods=['GET', 'POST'])
 def dashboard():
     if('user' in session and session['user'] == params['admin_mail']):
-        # teachers = Teachers.query.all()
         return render_template('dashboard.html',params=params)
 
     elif request.method == 'POST':
@@ -181,35 +128,25 @@ def dashboard():
         
         if ((userMail == params['admin_mail']) and (userpass == params['admin_password'])):
             session['user'] = userMail
-            # teachers = Teachers.query.all()
             return render_template('dashboard.html',params=params)
-
-    
     return render_template('login.html',params=params)
 
 @app.route('/deleteTeacher', methods=["POST"])
 def delete_teacher():
     teacher_name = request.form['target_teacher']
-
     teacher_found = Teachers.query.filter_by(name=teacher_name).first()
-
     db.session.delete(teacher_found)
     db.session.commit()
-
     myTeachers = Teachers.query.all()
-
     return render_template('teachers.html', teachers=myTeachers)
 
 @app.route('/deleteStudent', methods=["POST"])
 def delete_student():
     student_name = request.form['target_student']
     student_found = Students.query.filter_by(name=student_name).first()
-
     db.session.delete(student_found)
     db.session.commit()
-
     myStudents = Students.query.all()
-
     return render_template('students.html', students=myStudents)
 
 @app.route("/edit/<string:srno>", methods=['GET', 'POST'])
@@ -262,7 +199,7 @@ def editT(srno):
         db.session.commit()
         return redirect('/editT/'+srno)
 
-    student = Teachers.query.filter_by(srno=srno).first()
+    teacher = Teachers.query.filter_by(srno=srno).first()
     return render_template('editT.html',params=params,teacher=teacher,router=router,person=person,extra=extra,srno=srno)
 
 @app.route("/logout")
@@ -270,5 +207,4 @@ def logout():
     session.pop('user')
     return redirect("/dashboard")
 
-
-app.run(debug=True)
+app.run()
